@@ -1,0 +1,26 @@
+#!/bin/tcsh -f
+set regdir = datafiles
+
+set testList = `ls -1 $regdir/*cfg`
+ 
+set fails = 0 
+set tests = 0
+foreach test ( $testList[*] ) 
+	set testname = $test:t:r
+        @ tests++
+        java -classpath EnigmaApp.jar enigma -settings $regdir/$testname.cfg -file $regdir/$testname.encrypted > tmp
+
+        if ( `diff -q -wB tmp $regdir/$testname.plaintext` != "") then
+           echo "** ERROR files are different for test "$testname
+           diff -wB   tmp $regdir/$testname.plaintext
+           @ fails++
+        else
+             echo "Regression test " $testname " pass"
+        endif
+end
+echo "----------------------------------------------"
+if ( $fails > 0 ) then
+   echo "Failed "$fails" out of " $tests " tests"
+else
+  echo " Passed all "$tests "tests"
+endif
