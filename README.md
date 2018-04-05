@@ -16,4 +16,4 @@ You can fire up the emulator to run interactively using
 
     java -jar EnigmaApp.jar
 
-<img src="https://github.com/revaldinho/cpc_ram_expansion/blob/master/Enigma.png" alt="Macintosh Screenshot" width="640">
+<img src="https://github.com/revaldinho/enigma/blob/master/Enigma.png" alt="Macintosh Screenshot" width="640">
